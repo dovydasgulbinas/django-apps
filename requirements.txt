@@ -1,0 +1,6 @@
+certifi==2019.6.16
+Django==2.2.3
+pipx==0.13.1.1
+pytz==2019.1
+sqlparse==0.3.0
+userpath==1.1.0
