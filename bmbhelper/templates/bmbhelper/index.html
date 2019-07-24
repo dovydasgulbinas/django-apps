@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>BMB Helper</title>
+<meta name="description" content="">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="manifest" href="site.webmanifest">
+<link rel="apple-touch-icon" href="icon.png">
+<!-- Place favicon.ico in the root directory -->
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+{% load static %}
+<link rel="stylesheet" href="{% static "bmbhelper/css/normalize.css" %}">
+<link rel="stylesheet" href="{% static "bmbhelper/css/main.css" %}">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+<div class="container text-center centrify" id="radioapp">
+    {% block content %} {% endblock %}
+</div>
+</body>
+
+</html>

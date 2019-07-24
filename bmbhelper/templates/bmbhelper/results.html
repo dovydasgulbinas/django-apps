@@ -1,0 +1,23 @@
+{% extends 'bmbhelper/index.html' %}
+{% block content %}
+
+{% include "bmbhelper/includes/title.html"%}
+{% include "bmbhelper/includes/inputbox.html" %}
+
+<div id="app">
+    <p> [[ title ]] </p>
+    <p> {{album_url}} </p>
+    <p> {{artist}} </p>
+    <ul>
+        {% for day in days %}
+        <li>
+            <h4> Day {{ day }}</h4>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% load static %}
+<script src="{% static "bmbhelper/js/results.js" %}"></script>
+{% endblock %}
+
