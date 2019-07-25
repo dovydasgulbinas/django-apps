@@ -51,44 +51,6 @@ class LandingView(View):
 
         return render(request, 'bmbhelper/results.html', all_data)
 
-    def _scrape_bandcamp(self, album_url) -> dict:
-        soup = self._fetch_url_soup(album_url)
-        meta = self._parse_meta(soup)
-
-        return meta
-
-    def _fetch_url_soup(self, album_url):
-        r = requests.get(album_url)
-        html_doc = r.text
-        soup = BeautifulSoup(html_doc, 'html.parser')
-        return soup
-
-    def _parse_meta(self, soup: BeautifulSoup):
-
-        artist = soup.find(itemprop="byArtist").a.text
-        album = soup.find(class_="trackTitle").text.strip('\n ')
-
-        release_date = soup.find(itemprop="datePublished")['content']
-        # split to YYYY-MM-DD
-        release_date = f'{release_date[:4]}-{release_date[4:6]}-{release_date[6:8]}'
-        cover_art = soup.find(class_="popupImage").img['src']
-
-        return {
-            "artist": artist,
-            "album": album,
-            "release_date": release_date,
-            "cover_art": cover_art,
-        }
 
 
 
-    def _parse_tracks(self, soup: BeautifulSoup):
-        pass
-
-
-class XLandingView(TemplateView):
-    template_name = 'bmbhelper/landing.html'
-
-    # def get(self, request, *args, **kwargs):
-    #     context = dict()
-    #     return render(request, 'bmbhelper/landing.html', context)
