@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from django.test import TestCase
+from django.test import TestCase, SimpleTestCase
 
 from bs4 import BeautifulSoup
 
@@ -8,7 +8,7 @@ from bmbhelper.utils.bandcamp_parser import BandcampParser, AlbumMetaData
 from .data.album import album_html
 
 
-class TestBandcampParser(TestCase):
+class TestBandcampParser(SimpleTestCase):
     URL = "https://masterbootrecord.bandcamp.com/album/internet-protocol"
     ALBUM_HTML = album_html
     N_TRACKS = 7
@@ -21,7 +21,8 @@ class TestBandcampParser(TestCase):
             AlbumMetaData("MASTER BOOT RECORD",
                           "INTERNET PROTOCOL",
                           "2019-03-20",
-                          "https://f4.bcbits.com/img/a1521867852_16.jpg"
+                          "https://f4.bcbits.com/img/a1521867852_16.jpg",
+                          "https://masterbootrecord.bandcamp.com/album/internet-protocol"
                           )
 
     def test_mock_returns_soup_object(self):

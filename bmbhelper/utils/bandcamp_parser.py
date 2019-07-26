@@ -12,6 +12,7 @@ class AlbumMetaData:
     album_name: str
     album_release_date: str
     album_cover_art: str
+    album_url: str
 
 
 @dataclass
@@ -77,7 +78,12 @@ class BandcampParser(object):
         release_date = f'{release_date[:4]}-{release_date[4:6]}-{release_date[6:8]}'
         cover_art = soup.find(class_="popupImage").img['src']
 
-        self.release_meta = AlbumMetaData(artist, album, release_date, cover_art)
+        self.release_meta = AlbumMetaData(
+            artist,
+            album,
+            release_date,
+            cover_art,
+            self.url)
         return self.release_meta
 
     def parse_tracks(self, soup: BeautifulSoup):
