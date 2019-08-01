@@ -1,10 +1,5 @@
-import requests
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
-
-from django.views.generic.base import TemplateView
-
 
 from .forms import BandcampForm
 from .utils.bandcamp_parser import BandcampParser
@@ -34,13 +29,12 @@ class LandingView(View):
             # In really user will be prompted with a toolbox if his entry is not url
             # but for unit tests and overall clarity we will re-render the initial form w/
             # status=400 for initial clarity
-            return render(request, 'bmbhelper/landing.html', {"form": form}, status=400)
+            return render(request, 'bmbhelper/landing.html', {"form": form},
+                          status=400)
 
         cd = form.cleaned_data
         album_url = cd.get('album_url')
-        form = BandcampParser(album_url).to_dict()
+        form = BandcampParser(album_url)
+        form.fetch_album()
+        form = form.to_dict()
         return render(request, 'bmbhelper/results.html', form)
-
-
-
-

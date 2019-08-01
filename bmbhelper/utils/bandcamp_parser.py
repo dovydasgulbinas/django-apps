@@ -1,25 +1,54 @@
 import requests
 
-from dataclasses import dataclass
-
 from bs4 import BeautifulSoup
-from typing import List
+from typing import List, NamedTuple
 
 
-@dataclass
-class AlbumMetaData:
-    album_artist: str
-    album_name: str
-    album_release_date: str
-    album_cover_art: str
-    album_url: str
+class AttrDict(dict):
+
+    def __init__(self, *args, **kwargs):
+        len_fields = len(self.fields)
+        len_args = len(args)
+        if len(self.fields) != len(args):
+            IOError(f'Wrong number of arguments passed to the constructor: {len_fields}=/={len_args}')
+        super().__init__()
+        self._create_attributes(*args, **kwargs)
+
+    def __getattr__(self, key):
+        return self[key]
+
+    def __setattr__(self, key, value):
+        self[key] = value
+
+    def _create_attributes(self, *initial_field_values, **optional_attributes):
+        for i, attr in enumerate(self.fields):
+            setattr(self, attr, initial_field_values[i])
+
+        for key_attr in optional_attributes.keys():
+            setattr(self, key_attr, optional_attributes[key_attr])
+
+    def to_dict(self):
+        return self
 
 
-@dataclass
-class AlbumTrack:
-    track_number: str
-    track_title: str
-    track_length: str
+class AlbumMetaData(AttrDict):
+
+    fields = ("album_artist",
+              "album_name",
+              "album_release_date",
+              "album_cover_art",
+              "album_url"
+              )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def to_dict(self):
+        return self
+
+
+class AlbumTrack(AttrDict):
+    fields = ("track_number", "track_title", "track_length")
 
     def __str__(self):
         return f'{self.track_number}\t{self.track_title}\t{self.track_length}'
@@ -105,3 +134,13 @@ class BandcampParser(object):
         for track in track_numbers:
             i = track_numbers.index(track)
             self.release_tracks.push(AlbumTrack(track, track_names[i], track_durations[i]))
+
+    def to_dict(self):
+        print(self.release_meta)
+        print(self.release_meta)
+        print(self.release_meta)
+        print(self.release_meta)
+        return {
+            "meta": self.release_meta,
+            "tracks": self.release_tracks,
+        }
