@@ -1,31 +1,59 @@
-<div>
-    <h3>Results</h3>
-    <hr>
-    <!-- Make js return data based on request -->
-    <!-- <div>Enter a search term...</div> -->
-    <div>
-        <table class="table table-striped">
-            <tbody>
-            <tr class="centrify">
-                <th>No.</th>
-                <th class="centrify">Name</th>
-                <th class="centrify">Genres</th>
-                <th class="centrify">Current Track</th>
-                <th class="centrify">Play</th>
-            </tr>
+<div id="album-meta">
 
-            <tr v-for="(item, index) in stations">
-                <td>[[ index + 1 ]]</td>
-                <td>[[ item.name ]]</td>
-                <td>[[ item.genres ]]</td>
-                <td>[[ item.currentTrack ]]</td>
-                <td>
-                    <audio controls>
-                        <source :src="item.streamurl" type="audio/mpeg">
-                    </audio>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+
+
+    <div class="container">
+    <div class="col-md-9">
+        <h3>Release Information</h3>
+
+    <table class="table">
+        <caption>Copy & paste values above In Musicbrainz.org</caption>
+
+        <thead></thead>
+
+        <tbody>
+        <tr>
+            <th>Album Title:</th>
+            <td><input class="form-control form-control-sm" type="text" value="{{meta.album_name}}"></td>
+        </tr>
+
+        <tr>
+            <th>Album Artist:</th>
+            <td><input class="form-control form-control-sm" type="text" value="{{meta.album_artist}}"></td>
+        </tr>
+
+        <tr>
+            <th>Release Date:</th>
+            <td><input class="form-control form-control-sm" type="text" value="{{meta.album_release_date}}"></td>
+        </tr>
+
+        <tr>
+            <th>Album URL:</th>
+            <td><input class="form-control form-control-sm" type="text" value="{{meta.album_url}}"></td>
+        </tr>
+
+        </tbody>
+
+    </table>
+
     </div>
+
+    <div class="col-md-3">
+
+        <a href="{{ meta.album_cover_art}}" download>
+            <img src="{{ meta.album_cover_art }}" alt="image" class="img-thumbnail"/>
+        </a>
+
+        <div class="btn-group fullwidth">
+
+            <a href="https://musicbrainz.org/release/add/" target="_blank"
+               rel="noopener noreferrer" class="btn btn-primary active btn-block">
+                Open MusicBrainz
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
 </div>

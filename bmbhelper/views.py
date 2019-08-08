@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse
 from django.views import View
 
 from .forms import BandcampForm
@@ -21,8 +22,8 @@ class LandingView(View):
         form = BandcampForm()
         return render(request, 'bmbhelper/landing.html', {"form": form})
 
-    def post(self, request, *args, **kwargs):
-        form = BandcampForm(request.POST)
+    def post(self, request, parser=BandcampParser, *args, **kwargs):
+        form = BandcampForm(request.POST, auto_id=False)
         print(form)
 
         if not form.is_valid():
@@ -34,7 +35,31 @@ class LandingView(View):
 
         cd = form.cleaned_data
         album_url = cd.get('album_url')
-        form = BandcampParser(album_url)
+        form = parser(album_url)
         form.fetch_album()
         form = form.to_dict()
+        form["tool_url"] = request.build_absolute_uri(
+            reverse('landing'))  # field added for app promotion
+        return render(request, 'bmbhelper/results.html', form)
+
+
+class SandBoxView(View):
+
+    def get(self, request , *args, **kwargs):
+
+        from unittest.mock import MagicMock
+        from bs4 import BeautifulSoup
+
+        album_url = "https://masterbootrecord.bandcamp.com/album/internet-protocol"
+
+        from .tests.data.album import album_html
+
+        soup = BeautifulSoup(album_html, "html.parser")
+        form = BandcampParser(album_url)
+        form.fetch_url_soup = MagicMock(return_value=soup)
+        form.fetch_album()
+
+        form = form.to_dict()
+        form["tool_url"] = request.build_absolute_uri(
+            reverse('landing'))  # field added for app promotion
         return render(request, 'bmbhelper/results.html', form)

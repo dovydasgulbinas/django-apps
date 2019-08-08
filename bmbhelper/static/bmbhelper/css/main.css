@@ -49,6 +49,34 @@ hr {
     padding: 0;
 }
 
+.container{
+display: flex;
+justify-content: center;
+}
+
+#tracklist-area {
+    font-family: monospace;
+}
+
+/*
+#BandcampForm {
+
+    background: red;
+    font-family: monospace;
+
+}
+*/
+
+.fullwidth {
+width:100%;
+margin-left:0;
+margin-right:0;
+padding-left:0;
+padding-right:0;
+display:block;
+text-align:center; /*This will result in centering the link text, which is probably what you want -brianjohnsondesign.com*/
+}
+
 /*
  * Remove the gap between audio, canvas, iframes,
  * images, videos and the bottom of their containers:
