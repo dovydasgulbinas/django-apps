@@ -2,11 +2,13 @@ import re
 
 from django import forms
 
+from .widgets import BSSearchWidget
+
 
 class BandcampForm(forms.Form):
     REGEX = """(|https?//:)(.*)\.bandcamp\.com(/album/(.*)|/?)"""
     # https://github.com/django/django/tree/master/django/forms/templates/django/forms/widgets
-    album_url = forms.URLField()
+    album_url = forms.URLField(label="", help_text="", widget=BSSearchWidget(attrs={'id': 'BandcampForm', "class": "form-control", "placeholder": "xD"}))
 
     def _match_url(self, in_url: str) -> re.Match:
 
