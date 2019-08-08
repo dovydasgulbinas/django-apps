@@ -1,7 +1,7 @@
 import requests
 
 from bs4 import BeautifulSoup
-from typing import List, NamedTuple
+from typing import List
 
 
 class AttrDict(dict):
@@ -10,7 +10,8 @@ class AttrDict(dict):
         len_fields = len(self.fields)
         len_args = len(args)
         if len(self.fields) != len(args):
-            IOError(f'Wrong number of arguments passed to the constructor: {len_fields}=/={len_args}')
+            IOError(
+                f'Wrong number of arguments passed to the constructor: {len_fields}=/={len_args}')
         super().__init__()
         self._create_attributes(*args, **kwargs)
 
@@ -69,7 +70,7 @@ class TrackList(object):
         return self._tracks[index]
 
     def __str__(self):
-        result = ""
+        result = "\r"
         for t in self._tracks:
             result += f'{t}\n'
         return result
@@ -133,7 +134,8 @@ class BandcampParser(object):
 
         for track in track_numbers:
             i = track_numbers.index(track)
-            self.release_tracks.push(AlbumTrack(track, track_names[i], track_durations[i]))
+            self.release_tracks.push(AlbumTrack(
+                track, track_names[i], track_durations[i]))
 
     def to_dict(self):
         print(self.release_meta)

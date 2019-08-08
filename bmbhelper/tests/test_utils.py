@@ -64,7 +64,6 @@ class TestAlbumMetaData(SimpleTestCase):
     def test_AlbumMetaData_returns_dict_object(self):
         self.assertIsInstance(self.amd.to_dict(), dict)
 
-
     def test_AlbumMetaData_generates_correct_dict(self):
         self.assertDictEqual(self.amd, self.dic_expected)
 
