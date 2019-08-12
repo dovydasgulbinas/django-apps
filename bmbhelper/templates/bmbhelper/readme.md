@@ -1,5 +1,10 @@
 ## About This App
 
+## How it works
+
+This application scrapes a Bandcamp album page & outputs scraped data in a MusicBrainz friendly format. 
+Why ?
+
 About this project
 
 * uses unitesting
