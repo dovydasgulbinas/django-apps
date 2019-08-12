@@ -1,10 +1,21 @@
 {% extends 'bmbhelper/index.html' %}
 
 {% block content %}
-<!--<div class="containter">-->
-    <div >
-<!--    {% include "bmbhelper/includes/title.html" %}-->
+<div id="landing-main">
+    <!--    {% include "bmbhelper/includes/title.html" %}-->
+
+    {% include "bmbhelper/includes/logo.html" %}
     {% include "bmbhelper/includes/inputbox.html" %}
+
+    <div id="aboutbmb" class="container">
+
+        <div class="col-md-6 mt-md-4">
+            <div class="text-muted font-italic"><strong>BC2BM</strong> A simple
+                tool that parses album data from Bandcamp for easier entry in
+                MusicBrainz
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 

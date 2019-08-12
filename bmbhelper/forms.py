@@ -4,11 +4,16 @@ from django import forms
 
 from .widgets import BSSearchWidget
 
+PLACEHOLDER = "https://masterbootrecord.bandcamp.com/album/internet-protocol"
 
 class BandcampForm(forms.Form):
     REGEX = """(|https?//:)(.*)\.bandcamp\.com(/album/(.*)|/?)"""
-    # https://github.com/django/django/tree/master/django/forms/templates/django/forms/widgets
-    album_url = forms.URLField(label="", help_text="", widget=BSSearchWidget(attrs={'id': 'BandcampForm', "class": "form-control", "placeholder": "xD"}))
+    album_url = forms.URLField(label="", help_text="", widget=BSSearchWidget(
+        attrs={'id': 'BandcampForm',
+               "class": "form-control",
+               "value": PLACEHOLDER,
+               "placeholder": PLACEHOLDER,
+               }))
 
     def _match_url(self, in_url: str) -> re.Match:
 

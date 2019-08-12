@@ -9,20 +9,11 @@ Vue.component('meta-line', {
     `
 })
 
-var bmb_album_meta = new Vue({
-delimiters: ['[[', ']]'],
-  el: '#album-meta',
-  data: {
-    title: 'Welcome to My Journal'
-  }
-})
-
-
 new Vue({
   delimiters: ['[[', ']]'],
   el: '#app',
   data:{
-    message: 'xD',
+    message: 'please-implement',
   },
   methods: {
     onCopy: function (e) {
