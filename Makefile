@@ -21,6 +21,7 @@ freeze:
 	pip freeze > requirements.txt
 	git add requirements.txt
 
+
 ### DOCKER SECTION ###
 
 remake: rebuild 
@@ -43,3 +44,14 @@ image-push-remote: remake image-add-remote-tag
 
 image-add-remote-tag:
 	docker image tag $(TAG) $(TAG_REMOTE)
+
+comp-build-up: comp-build comp-up
+
+comp-build:
+	docker-compose build 
+
+comp-up:
+	docker-compose up -d
+
+comp-logs:
+	docker-compose logs -f
