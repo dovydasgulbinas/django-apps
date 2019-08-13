@@ -60,7 +60,10 @@ comp-logs:
 prod-comp-build-up: prod-comp-build prod-comp-up
 
 prod-comp-up:
-	docker-compose up
+	docker-compose --file=docker-compose-prod.yml up -d
 
 prod-comp-build:
-	docker-compose build --file=docker-compose-prod.yml
+	docker-compose --file=docker-compose-prod.yml build 
+
+prod-comp-rr:
+	docker-compose --file=docker-compose-prod.yml restart 
