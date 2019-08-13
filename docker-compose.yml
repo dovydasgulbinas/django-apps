@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  web:
+    container_name: ${PROJECT_NAME}-django
+    # build: ./${PROJECT_NAME}
+    image: local:${IMG_NAME}
+    command: python manage.py runserver
+    volumes:
+      - ./:/usr/src/app/
+      - static_volume:/usr/src/app/staticfiles
+      - media_volume:/usr/src/app/mediafiles
+    networks:
+      - backend_network
+    ports:
+        - ./${PORT}:8000
+
+volumes:
+  static_volume:
+  media_volume:
