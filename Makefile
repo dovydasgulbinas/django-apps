@@ -53,5 +53,14 @@ comp-build:
 comp-up:
 	docker-compose up -d
 
+
 comp-logs:
 	docker-compose logs -f
+
+prod-comp-build-up: prod-comp-build prod-comp-up
+
+prod-comp-up:
+	docker-compose up
+
+prod-comp-build:
+	docker-compose build --file=docker-compose-prod.yml

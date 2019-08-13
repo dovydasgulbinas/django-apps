@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  web:
+    image: ${REPO_OWNER}/${IMG_NAME}:latest
+    command: gunicorn ${PROJECT_NAME}.wsgi:application --reload --bind 0.0.0.0:${PORT}
+    volumes:
+      - ./:/usr/src/app/
+      - static_volume:/usr/src/app/static
+      - media_volume:/usr/src/app/media
+    networks:
+      - proxypass
+      - backend_network
+    ports:
+        - ${PORT_COMPOSE}:8000
+  nginx:
+    container_name: ${PROJECT_NAME}-nginx
+    image: nginx:1.17.2-alpine
+    build: ./${PROJECT_NAME}-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - static_volume:/usr/src/app/media
+      - media_volume:/usr/src/app/static
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web
+    networks:
+      - backend_network
+
+volumes:
+  static_volume:
+  media_volume:
+
+networks:
+  proxypass:
+  backend_network:
