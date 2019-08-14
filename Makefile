@@ -23,6 +23,13 @@ freeze:
 	pip freeze > requirements.txt
 	git add requirements.txt
 
+merge: test freeze
+	git commit
+	git push dev
+	git checkout master
+	git merge dev
+	git push master
+
 ## pre git section
 precommit: test freeze
 
