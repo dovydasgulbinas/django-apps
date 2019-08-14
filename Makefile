@@ -24,11 +24,12 @@ freeze:
 	git add requirements.txt
 
 merge: test freeze
+	git add -i
 	git commit
-	git push dev
+	git push origin dev
 	git checkout master
 	git merge dev
-	git push master
+	git push origin master
 
 ## pre git section
 precommit: test freeze
