@@ -4,6 +4,9 @@ services:
   web:
     container_name: ${IMG_NAME}
     build: .
+    environment: 
+        # We want to use default settings module see: showcase.wsgi.py
+      - DJANGO_SETTINGS_MODULE=""
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./:/usr/src/app/

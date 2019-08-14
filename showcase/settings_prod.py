@@ -1,3 +1,3 @@
 from .settings import *
 
-### ADD Setting overrides here ###
+DEBUG = False
