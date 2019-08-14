@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-# TODO: Add default os param selection if not set
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'showcase.settings')
 
 application = get_wsgi_application()

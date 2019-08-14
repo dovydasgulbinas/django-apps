@@ -72,7 +72,7 @@ comp-up:
 comp-logs:
 	docker-compose logs -f
 
-prod-full-build: prod-comp-conf prod-comp-build prod-comp-up prod-comp-logs
+prod-full-build: prod-comp-rm prod-comp-conf prod-comp-build prod-comp-up prod-comp-logs
 
 prod-comp-up:
 	docker-compose --file=$(PROD_COMPOSE_FILE) up -d
@@ -82,6 +82,9 @@ prod-comp-build:
 
 prod-comp-rr:
 	docker-compose --file=$(PROD_COMPOSE_FILE) restart
+
+prod-comp-rm:
+	docker-compose --file=$(PROD_COMPOSE_FILE) rm || true
 
 prod-comp-conf:
 	docker-compose --file=$(PROD_COMPOSE_FILE) config
