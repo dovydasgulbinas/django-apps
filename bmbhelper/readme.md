@@ -2,7 +2,7 @@
 
 ## How it works
 
-<iframe src="https://giphy.com/embed/cICjXhmFpHb5mYJ6gS" width="480" height="140" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/bc2mb-bandcamp-musicbraind-cICjXhmFpHb5mYJ6gS">via GIPHY</a></p>
+![Bandcamp 2 MusicBrainz helper](./bc2mb.gif)
 
 This application scrapes a Bandcamp album page & outputs scraped data in a MusicBrainz friendly format.
 In the future I will try to implement an automatic post to MusicBrainz assuming their API allows it.
