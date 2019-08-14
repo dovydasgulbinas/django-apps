@@ -5,7 +5,15 @@ import sys
 
 
 def main():
+    # TODO: ADD automatic selection
+    # dsm = os.environ.get('DJANGO_SETTINGS_MODULE')
+    # print(dsm)
+    # print(not dsm)
+    # print(dsm in ('None', 'none', 'False', 'false', '\'\'', '""'))
+    # if (not dsm) or (dsm in ('None', 'none', 'False', 'false', '\'\'', '""')):
+    #     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'showcase.settings')
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'showcase.settings')
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

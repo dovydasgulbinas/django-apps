@@ -10,8 +10,7 @@ RUN apk update \
 
 WORKDIR /usr/src/app
 
-## TODO: Copy only requirements.txt
-COPY . .
+COPY ./requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 

@@ -6,7 +6,7 @@ services:
     build: .
     environment: 
         # We want to use default settings module see: showcase.wsgi.py
-      - DJANGO_SETTINGS_MODULE=""
+      - DJANGO_SETTINGS_MODULE showcase.settings
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./:/usr/src/app/

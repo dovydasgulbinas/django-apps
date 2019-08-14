@@ -12,6 +12,7 @@ gunicorn==19.9.0
 idna==2.8
 pipx==0.13.1.1
 Pygments==2.4.2
+python-decouple==3.1
 pytz==2019.1
 requests==2.22.0
 six==1.12.0
