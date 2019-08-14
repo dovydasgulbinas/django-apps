@@ -1,5 +1,7 @@
 # About This Django App
 
+[👉 Click For Hosted Version][bc2mbhosted]
+
 ## How it works
 
 ![Bandcamp 2 MusicBrainz helper](./bc2mb.gif)
@@ -9,7 +11,7 @@ In the future I will try to implement an automatic post to MusicBrainz assuming 
 
 ## About BandCamp Scraper
 
-This project has a clean and reusable scraper module check it out at `bmbhelper.utils.bandcamp_parser.py`
+This project has a clean and reusable scraper module, check it out at `bmbhelper.utils.bandcamp_parser.py`
 Tests for this module are found under `tests.test_utils.py`
 
 ## Nerdy part of the project
@@ -42,3 +44,4 @@ Tests for this module are found under `tests.test_utils.py`
 [9]: https://stackoverflow.com/questions/43570838/how-do-you-use-python-decouple-to-load-a-env-file-outside-the-expected-paths
 [10]: https://simpleisbetterthancomplex.com/2015/11/26/package-of-the-week-python-decouple.html
 [11]: https://medium.com/machine-learning-world/deploying-on-aws-free-tire-with-docker-and-fabric-d9eca7c629e6
+[bc2mbhosted]: https://me.dovydas.xyz/bc2mb
