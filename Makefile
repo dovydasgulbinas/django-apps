@@ -25,7 +25,7 @@ freeze:
 
 merge: test freeze
 	git add -i
-	git commit
+	git commit || true
 	git push origin dev
 	git checkout master
 	git merge dev
