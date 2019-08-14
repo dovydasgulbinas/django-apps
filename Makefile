@@ -5,6 +5,8 @@ REPO_REMOTE = $(REPO_OWNER)/$(IMG_NAME)
 TAG_REMOTE = $(REPO_REMOTE):$(IMG_VERSION)
 CNAME = $(IMG_NAME) 
 
+PROD_COMPOSE_FILE=docker-compose-prod.yml
+
 test:
 	coverage run manage.py test bmbhelper -v 2
 
@@ -20,6 +22,12 @@ open:
 freeze:
 	pip freeze > requirements.txt
 	git add requirements.txt
+
+## pre git section
+precommit: test freeze
+
+prod-deploy-secrets:
+
 
 
 ### DOCKER SECTION ###
@@ -53,17 +61,22 @@ comp-build:
 comp-up:
 	docker-compose up -d
 
-
 comp-logs:
 	docker-compose logs -f
 
-prod-comp-build-up: prod-comp-build prod-comp-up
+prod-full-build: prod-comp-conf prod-comp-build prod-comp-up prod-comp-logs
 
 prod-comp-up:
-	docker-compose --file=docker-compose-prod.yml up -d
+	docker-compose --file=$(PROD_COMPOSE_FILE) up -d
 
 prod-comp-build:
-	docker-compose --file=docker-compose-prod.yml build 
+	docker-compose --file=$(PROD_COMPOSE_FILE) build 
 
 prod-comp-rr:
-	docker-compose --file=docker-compose-prod.yml restart 
+	docker-compose --file=$(PROD_COMPOSE_FILE) restart
+
+prod-comp-conf:
+	docker-compose --file=$(PROD_COMPOSE_FILE) config
+
+prod-comp-logs:
+	docker-compose --file=$(PROD_COMPOSE_FILE) logs -f

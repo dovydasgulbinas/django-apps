@@ -2,8 +2,7 @@ FROM python:3.7.4-alpine
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV USE_DEV "true"
-ENV USE_GUNICORN "false"
+ENV DJANGO_SETTINGS_MODULE showcase.settings
 
 RUN apk update \
     && apk add --no-cache \
@@ -11,6 +10,7 @@ RUN apk update \
 
 WORKDIR /usr/src/app
 
+## TODO: Copy only requirements.txt
 COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt

@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'showcase.settings')
+# We export env variable in docker-prod
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'showcase.settings')
+
 
 application = get_wsgi_application()

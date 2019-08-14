@@ -1,7 +1,11 @@
 version: '3'
 
+
 services:
   web:
+    env_file: 
+      - ./.env
+      - ./.env_prod
     container_name: ${PROJECT_NAME}-django
     image: ${REPO_OWNER}/${IMG_NAME}:latest
     command: gunicorn ${PROJECT_NAME}.wsgi:application --reload --bind 0.0.0.0:${PORT}
@@ -14,6 +18,9 @@ services:
     # ports:
     #     - ${PORT_COMPOSE}:8000
   nginx:
+    env_file: 
+      - ./.env
+      - ./.env_prod
     container_name: ${PROJECT_NAME}-nginx
     image: nginx:1.17.2-alpine
     ports:
