@@ -1,0 +1,13 @@
+language: python
+python:
+  - 3.7
+
+services:
+    - docker
+
+install:
+    - make comp-build
+
+install:
+  - pip install -r requirements.txt
+
