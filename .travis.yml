@@ -6,8 +6,13 @@ services:
     - docker
 
 install:
-    - make comp-build
+# 1. build (docker-compose) & 2. run (docker-compose)
+  - make travis-build-up
 
-install:
-  - pip install -r requirements.txt
+script:
+# 3. test (unit-tests APP)
+  - make travis-test-unit
+# 3.1 test (integration-tests)
 
+# 4. Bundle & Push (docker-compose)
+# 5. Deploy
