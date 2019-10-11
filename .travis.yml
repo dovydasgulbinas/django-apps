@@ -1,1 +1,18 @@
 language: python
+python:
+  - 3.7
+
+services:
+    - docker
+
+install:
+# 1. build (docker-compose) & 2. run (docker-compose)
+  - make travis-build-up
+
+script:
+# 3. test (unit-tests APP)
+  - make travis-test-unit
+# 3.1 test (integration-tests)
+
+# 4. Bundle & Push (docker-compose)
+# 5. Deploy

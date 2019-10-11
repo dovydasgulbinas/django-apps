@@ -36,6 +36,12 @@ precommit: test freeze
 
 prod-deploy-secrets:
 
+### TRAVIS SECTION ###
+
+travis-build-up: comp-build-up
+travis-test-unit:
+	docker-compose exec web coverage run manage.py test bmbhelper -v 2
+
 ### DOCKER SECTION ###
 
 remake: rebuild 
