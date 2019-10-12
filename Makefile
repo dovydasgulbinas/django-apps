@@ -43,6 +43,18 @@ travis-build-up: comp-build-up
 travis-test-unit:
 	docker-compose exec web coverage run manage.py test bmbhelper -v 2
 
+local-travis-encrypt-secrets: local-travis-bundle-secrets
+	# https://docs.travis-ci.com/user/encrypting-files/
+	# ADD files that need encryption here!
+	travis encrypt-file secrets.tar secrets.tar.enc
+	git add secrets.tar.enc
+	git commit -m "Re-encrypting secrets.tar
+
+local-travis-bundle-secrets:
+	# https://docs.travis-ci.com/user/encrypting-files#encrypting-multiple-files
+	# Add as many files as you want.  But make sure they 
+	# are relative the the root of this git repo
+	tar cvf secrets.tar .env
 
 ### DOCKER SECTION ###
 

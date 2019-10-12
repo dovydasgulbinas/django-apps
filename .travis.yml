@@ -5,6 +5,9 @@ python:
 services:
     - docker
 
+before_install:
+  - openssl aes-256-cbc -K $encrypted_a1430f60b6d9_key -iv $encrypted_a1430f60b6d9_iv -in secrets.tar.enc -out secrets.tar -d
+
 install:
 # 1. build (docker-compose) & 2. run (docker-compose)
   - make travis-build-up

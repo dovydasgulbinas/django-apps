@@ -2,5 +2,6 @@ db.sqlite3
 static/
 media/
 .env_prod
-.env
+/.env
 .coverage
+/secrets.tar
