@@ -42,8 +42,6 @@ prod-deploy-secrets:
 travis-build-up: comp-build-up
 travis-test-unit:
 	docker-compose exec web coverage run manage.py test bmbhelper -v 2
-travis-untar-secrets:
-	tar xvf secrets.tar
 
 local-travis-encrypt-secrets: local-travis-bundle-secrets
 	# https://docs.travis-ci.com/user/encrypting-files/
