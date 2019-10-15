@@ -6,4 +6,5 @@ media/
 .coverage
 /secrets.tar
 /showcase.dab
-/hub-password
+#/hub-password
+/keychain/

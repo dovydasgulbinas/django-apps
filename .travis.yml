@@ -17,10 +17,10 @@ script:
 # 3. test (unit-tests APP)
   - make travis-test-unit
 # 3.1 test (integration-tests)
+# 4. Bundle & Push (docker-compose)
   - make travis-bundle-push
 
-
-# 4. Bundle & Push (docker-compose)
-
-
 # 5. Deploy
+# https://gist.github.com/nickbclifford/16c5be884c8a15dca02dca09f65f97bd
+# deploy:
+

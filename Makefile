@@ -50,13 +50,13 @@ local-travis-encrypt-secrets: local-travis-bundle-secrets
 	# ADD files that need encryption here!
 	travis encrypt-file secrets.tar secrets.tar.enc
 	git add secrets.tar.enc
-	git commit -m "Re-encrypting secrets.tar
+	git commit -m "Re-encrypting secrets.tar"
 
 local-travis-bundle-secrets:
 	# https://docs.travis-ci.com/user/encrypting-files#encrypting-multiple-files
 	# Add as many files as you want.  But make sure they 
 	# are relative the the root of this git repo
-	tar cvf secrets.tar .env hub-password
+	tar cvf secrets.tar .env keychain
 
 ### DOCKER SECTION ###
 
@@ -65,7 +65,7 @@ rebuild: rm-container rm-image build
 
 docker-login:
 	# https://stackoverflow.com/questions/30970591/automatic-docker-login-within-a-bash-script
-	cat hub-password | docker login --password-stdin --username "${DOCKER_USER}" --
+	cat keychain/hub-password | docker login --password-stdin --username "${DOCKER_USER}" --
 
 rm-container: stop-container
 	docker rm $(CNAME) || true
