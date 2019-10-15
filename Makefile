@@ -43,6 +43,8 @@ travis-build-up: comp-build-up
 travis-test-unit:
 	docker-compose exec web coverage run manage.py test bmbhelper -v 2
 
+travis-docker-push: comp-bundle-push
+
 local-travis-encrypt-secrets: local-travis-bundle-secrets
 	# https://docs.travis-ci.com/user/encrypting-files/
 	# ADD files that need encryption here!
@@ -54,12 +56,16 @@ local-travis-bundle-secrets:
 	# https://docs.travis-ci.com/user/encrypting-files#encrypting-multiple-files
 	# Add as many files as you want.  But make sure they 
 	# are relative the the root of this git repo
-	tar cvf secrets.tar .env
+	tar cvf secrets.tar .env hub-password
 
 ### DOCKER SECTION ###
 
 remake: rebuild 
 rebuild: rm-container rm-image build
+
+docker-login:
+	# https://stackoverflow.com/questions/30970591/automatic-docker-login-within-a-bash-script
+	cat hub-password | docker login --password-stdin --username "${DOCKER_USER}" --
 
 rm-container: stop-container
 	docker rm $(CNAME) || true
@@ -82,7 +88,12 @@ image-add-remote-tag:
 comp-build-up: comp-build comp-up
 
 comp-build:
-	docker-compose build 
+	docker-compose build .
+
+comp-bundle-push: docker-login
+	docker-compose bundle --push-images
+	docker-compose push
+
 
 comp-up:
 	docker-compose up -d

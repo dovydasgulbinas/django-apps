@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  web:
+    container_name: ${IMG_NAME}
+    image: "${REPO_OWNER}/${IMG_NAME}"
+    build: .
+    environment: 
+        # We want to use default settings module see: showcase.wsgi.py
+      - DJANGO_SETTINGS_MODULE=showcase.settings
+      - DEBUG=True
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/usr/src/app/
+      - static_volume:/usr/src/app/static
+      - media_volume:/usr/src/app/media
+    networks:
+      - backend_network
+    ports:
+        - ${PORT_COMPOSE}:8000
+
+volumes:
+  static_volume:
+  media_volume:
+
+networks:
+  backend_network:
