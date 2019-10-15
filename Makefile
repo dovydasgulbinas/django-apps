@@ -43,7 +43,7 @@ travis-build-up: comp-build-up
 travis-test-unit:
 	docker-compose exec web coverage run manage.py test bmbhelper -v 2
 
-travis-docker-push: comp-bundle-push
+travis-bundle-push: comp-bundle-push
 
 local-travis-encrypt-secrets: local-travis-bundle-secrets
 	# https://docs.travis-ci.com/user/encrypting-files/
@@ -88,12 +88,11 @@ image-add-remote-tag:
 comp-build-up: comp-build comp-up
 
 comp-build:
-	docker-compose build .
+	docker-compose build
 
 comp-bundle-push: docker-login
 	docker-compose bundle --push-images
 	docker-compose push
-
 
 comp-up:
 	docker-compose up -d
