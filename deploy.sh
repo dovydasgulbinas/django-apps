@@ -1,5 +1,8 @@
 #!/bin/bash
 
+pwd
+ls -alt .
+
 source .env
 
 eval "$(ssh-agent -s)" # Start ssh-agent cache
