@@ -3,8 +3,6 @@
 pwd
 ls -alt .
 
-# development related env variables only
-source keychain/deploy.env
 
 git config --global push.default matching
 git remote add deploy ssh://$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PORT$DEPLOY_DIR
