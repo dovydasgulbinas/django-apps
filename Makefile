@@ -33,9 +33,10 @@ merge: test freeze
 
 ## pre git section
 precommit: test freeze
-
+### Deployment On Remote ###
 prod-deploy-secrets:
 
+prod-run-new: comp-down comp-up comp-top
 
 ### TRAVIS SECTION ###
 
@@ -96,6 +97,12 @@ comp-bundle-push: docker-login
 
 comp-up:
 	docker-compose up -d
+
+comp-down:
+	docker-compose down
+
+comp-top:
+	docker-compose top
 
 comp-logs:
 	docker-compose logs -f
