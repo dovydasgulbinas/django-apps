@@ -5,7 +5,7 @@ python:
 services:
     - docker
 
-before_install:
+before_install: 
   - openssl aes-256-cbc -K $encrypted_a1430f60b6d9_key -iv $encrypted_a1430f60b6d9_iv -in secrets.tar.enc -out secrets.tar -d
   - tar xvf secrets.tar
 
@@ -20,11 +20,19 @@ script:
 # 4. Bundle & Push (docker-compose)
   - make travis-bundle-push
 
+before_deploy:
+# https://archive.ph/RKocC
+  - openssl aes-256-cbc -K $encrypted_a1430f60b6d9_key -iv $encrypted_a1430f60b6d9_iv -in secrets.tar.enc -out secrets.tar -d
+  - tar xvf secrets.tar
+  - eval "$(ssh-agent -s)"
+  - chmod 600 keychain/travis_id_rsa
+  - ssh-add keychain/travis_id_rsa
+
 
 # 5. Deploy
 # https://gist.github.com/nickbclifford/16c5be884c8a15dca02dca09f65f97bd
 deploy:
   provider: script
-  script: bash deploy.sh
+  script: bash deploy.sh dev
   on:
     branch: dev
