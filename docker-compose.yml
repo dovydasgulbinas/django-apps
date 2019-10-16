@@ -6,6 +6,7 @@ services:
     image: ${REPO_OWNER}/${IMG_NAME}:latest
     build: .
     command: gunicorn ${PROJECT_NAME}.wsgi:application --reload --bind 0.0.0.0:${PORT}
+    env_file: ./.env
     volumes:
       - ./:/usr/src/app/
       - static_volume:/usr/src/app/static
