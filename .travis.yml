@@ -20,6 +20,9 @@ script:
 # 4. Bundle & Push (docker-compose)
   - make travis-bundle-push
 
+addons:
+  ssh_known_hosts: $DEPLOY_HOST
+
 before_deploy:
 # https://archive.ph/RKocC
   - pwd
