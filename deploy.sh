@@ -1,8 +1,7 @@
 #!/bin/bash
 
-echo "$TEST_VAR"
+set -v
 
-git config --global push.default matching
 git remote add deploy ssh://$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PORT$DEPLOY_DIR
 git push deploy "${1:-master}"
 
@@ -17,3 +16,5 @@ ssh $DEPLOY_USER@$DEPLOY_HOST -p $DEPLOY_PORT <<EOF
   cd $DEPLOY_DIR
   make prod-run-new
 EOF
+
+exit 0
