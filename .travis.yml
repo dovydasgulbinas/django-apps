@@ -21,7 +21,9 @@ script:
   - make travis-bundle-push
 
 addons:
-  ssh_known_hosts: $DEPLOY_HOST
+
+  ssh_known_hosts:
+  - $DEPLOY_HOST:$DEPLOY_PORT
 
 before_deploy:
 # https://archive.ph/RKocC
@@ -31,6 +33,7 @@ before_deploy:
   - chmod 600 keychain/travis_id_rsa
   # development related env variables only
   - ssh-add keychain/travis_id_rsa
+  - git stash --all
   - git config --global push.default matching
 
 # 5. Deploy
