@@ -19,4 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('bc2mb/', include('bmbhelper.urls')),
+    path('gate2payments/', include('gate2payments.urls')),
+
 ]
