@@ -1,0 +1,18 @@
+{% extends 'gate2payments/index.html' %}
+
+{% block content %}
+<div id="landing-main">
+
+    <p class="jumbotron">Hello World</p>
+    
+</div>
+
+<div>
+    <form action="https://gate2payments.docs.oppwa.com/tutorials/integration-guide#CNPStep1" class="paymentWidgets" data-brands="VISA MASTER AMEX"></form>
+    <script src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId={{checkout_id}}"></script>
+</div>
+{% endblock %}
+
+
+
+
